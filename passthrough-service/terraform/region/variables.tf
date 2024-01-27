@@ -38,8 +38,8 @@ variable "splunk_hec_token" {
   default     = ""
 }
 
-variable "sns_pagerduty_topic" {
-  description = "SNS topic for PagerDuty notifications"
+variable "sns_alarm_topic" {
+  description = "SNS topic for alarm notifications"
   type        = string
 }
 

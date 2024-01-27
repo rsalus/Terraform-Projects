@@ -19,7 +19,7 @@ module "primary" {
   ghe_url                         = var.ghe_url
   service_name                    = var.service_name
   splunk_hec_token                = var.splunk_hec_token
-  sns_pagerduty_topic             = var.sns_pagerduty_topic
+  sns_alarm_topic                 = var.sns_alarm_topic
   statsd_host                     = var.statsd_host
   vpc_id                          = var.vpc_id
   account                         = var.account
@@ -50,7 +50,7 @@ module "secondary" {
   ghe_url                         = var.ghe_url
   service_name                    = var.service_name
   splunk_hec_token                = var.splunk_hec_token
-  sns_pagerduty_topic             = var.sns_pagerduty_topic
+  sns_alarm_topic                 = var.sns_alarm_topic
   statsd_host                     = var.statsd_host
   vpc_id                          = var.vpc_id_secondary
   account                         = var.account

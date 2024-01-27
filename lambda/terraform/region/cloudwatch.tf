@@ -12,14 +12,6 @@ resource "aws_cloudwatch_log_group" "lambda_logs-GenericTrigger" {
   retention_in_days = "30"
 }
 
-resource "aws_cloudwatch_log_subscription_filter" "lambda_log_subscr_filter_splunk-GenericTrigger" {
-  name            = "splunk-log-lambda-${var.account}-GenericTrigger-${var.region}"
-  log_group_name  = "/aws/lambda/GenericTrigger-${var.environment}-${var.region}"
-  filter_pattern  = ""
-  destination_arn = "arn:aws:logs:${var.region}:753750589304:destination:${var.account}-cloudwatch-lambda-destination-${var.region}"
-  depends_on      = [aws_cloudwatch_log_group.lambda_logs-GenericTrigger]
-}
-
 # ErrorCount Metric
 resource "aws_cloudwatch_log_metric_filter" "errorCount" {
   name           = "GenericTrigger-metrics-ErrorCount"
@@ -48,18 +40,18 @@ resource "aws_cloudwatch_metric_alarm" "ErrorCount_TooHigh" {
   treat_missing_data  = "notBreaching"
 
   alarm_actions = [
-    data.aws_sns_topic.service-pagerduty.arn
+    data.aws_sns_topic.service-alarm.arn
   ]
 }
 
 # High Priority
-data "aws_sns_topic" "service-pagerduty" {
-  name = "service-pagerduty"
+data "aws_sns_topic" "service-alarm" {
+  name = "service-alarm"
 }
 
 resource "aws_sns_topic_subscription" "service-All-Hours-RuleSet" {
   protocol               = "https"
-  endpoint               = var.pagerduty_cloudwatch_service_all_hours
+  endpoint               = var.alarm_cloudwatch_service
   endpoint_auto_confirms = true
-  topic_arn              = data.aws_sns_topic.service-pagerduty.arn
+  topic_arn              = data.aws_sns_topic.service-alarm.arn
 }

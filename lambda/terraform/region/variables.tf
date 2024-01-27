@@ -20,8 +20,8 @@ variable "account" {
 variable "lambda_role" {
 }
 
-variable "pagerduty_cloudwatch_service_all_hours" {
-  description = "The PagerDuty Integration URL to use as a webhook for CloudWatch alarms that will alert 24/7."
+variable "alarm_cloudwatch_service" {
+  description = "The alarm Integration URL to use as a webhook for CloudWatch alarms that will alert 24/7."
   default     = ""
 }
 

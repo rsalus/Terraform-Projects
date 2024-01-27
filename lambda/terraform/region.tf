@@ -17,7 +17,7 @@ module "primary" {
   region                                 = var.aws_regions[0]
   account                                = var.account
   lambda_role                            = module.global.lambda_role
-  pagerduty_cloudwatch_service_all_hours = var.pagerduty_cloudwatch_service_all_hours
+  alarm_cloudwatch_service               = var.alarm_cloudwatch_service
   default_tags                           = local.default_tags
 }
 
@@ -33,6 +33,6 @@ module "secondary" {
   region                                 = var.aws_regions[1]
   account                                = var.account
   lambda_role                            = module.global.lambda_role
-  pagerduty_cloudwatch_service_all_hours = var.pagerduty_cloudwatch_service_all_hours
+  alarm_cloudwatch_service               = var.alarm_cloudwatch_service
   default_tags                           = local.default_tags
 }
