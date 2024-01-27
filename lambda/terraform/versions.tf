@@ -24,9 +24,6 @@ provider "aws" {
   default_tags {
     tags = local.default_tags
   }
-  ignore_tags {
-    key_prefixes = ["cai:"]
-  }
 }
 
 provider "aws" {
@@ -34,8 +31,5 @@ provider "aws" {
   region = var.aws_regions[1]
   default_tags {
     tags = local.default_tags
-  }
-  ignore_tags {
-    key_prefixes = ["cai:"]
   }
 }
